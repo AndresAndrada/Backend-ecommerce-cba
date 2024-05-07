@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const { Product } = require('../models/Product');
 const { User } = require('../models/User');
+const { Category } = require('../models/Category');
 // const { Reviews } = require('../models/Review');
 // const { Type } = require('../models/Type');
 
@@ -13,9 +14,9 @@ const sequelize = new Sequelize(URL_POSTGRESQL, {
     port: PORT_POSTGRESQL
 });
 
-// User(sequelize);
-Product(sequelize);
 User(sequelize);
+Product(sequelize);
+Category(sequelize)
 // Reviews(sequelize);
 // Type(sequelize);
 
