@@ -8,16 +8,20 @@ const User = (sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        name: {
+        username: {
             // nombre del usuario
             type: DataTypes.STRING,
-            allowNull: false
-        },
-        picture: {
-            type: DataTypes.STRING(600)
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING, //  contacto del usuario
+            allowNull: false
+        },
+        user_image: {
+            type: DataTypes.STRING
+        },
+        password: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         contact: {

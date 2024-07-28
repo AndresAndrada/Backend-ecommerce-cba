@@ -16,7 +16,7 @@ const sequelize = new Sequelize(URL_POSTGRESQL, {
 
 User(sequelize);
 Product(sequelize);
-Category(sequelize)
+Category(sequelize);
 // Reviews(sequelize);
 // Type(sequelize);
 
