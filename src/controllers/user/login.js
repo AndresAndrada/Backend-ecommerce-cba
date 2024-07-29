@@ -1,7 +1,9 @@
+require('dotenv').config();
 const { User } = require("../../db/db");
 const crypto = require('crypto');
 const { comparePassword } = require("../../handle/comparePassword");
 const { tokenSign } = require("../../handle/generateToken");
+const { PORT } = process.env;
 
 function generateSalt() {
     return crypto.randomBytes(16).toString('hex');
@@ -16,12 +18,12 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const salt = generateSalt();
-        const hashedPassword = encryptPassword(password, salt);
-        console.log(hashedPassword, 'hashedPassword');
-        const user = await User.findOne({ where: { password: hashedPassword } });
-        console.log(user, 'DATAVALUES');
+        const hashedPassword = encryptPassword(password, PORT);
+        // console.log(hashedPassword, 'hashedPassword');
+        const user = await User.findOne({ where: { email } });
+        console.log(user.password, 'DATAVALUES');
         if (!user?.dataValues) return res.status(404).send({ error: 'User not found' })
-        const checkPassword = await comparePassword(password);
+        const checkPassword = await comparePassword(hashedPassword);
         const tokenSession = await tokenSign(user);
         checkPassword ? res.send({ user, tokenSession }) : res.status(409).send({ error: 'Username or password is invalidate' });
     } catch (error) {

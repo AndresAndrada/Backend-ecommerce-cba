@@ -1,7 +1,9 @@
+require('dotenv').config();
 const { User } = require("../../db/db");
 const crypto = require('crypto');
 const { newUser } = require('../../config/nodemailer');
 const { compareUser } = require("../../handle/compareUser");
+const { PORT } = process.env;
 
 function encryptPassword(password, salt) {
     const hash = crypto.createHmac('sha256', salt).update(password).digest('hex');
@@ -22,7 +24,7 @@ const createUser = async (req, res) => {
         console.log(compare, 'COMPARE');
         if (compare) {
             const salt = generateSalt();
-            const hashedPassword = encryptPassword(user.password, salt);
+            const hashedPassword = encryptPassword(user.password, PORT);
             const userNew = await User.create({ ...user, password: hashedPassword });
             await newUser(user.email);
             return res.send(userNew);
