@@ -25,7 +25,7 @@ const login = async (req, res) => {
         if (!user?.dataValues) return res.status(404).send({ error: 'User not found' })
         const checkPassword = await comparePassword(hashedPassword);
         const tokenSession = await tokenSign(user);
-        checkPassword ? res.send({ user, tokenSession }) : res.status(409).send({ error: 'Username or password is invalidate' });
+        checkPassword ? res.send({ idUser: user.id, emailUser: user.email, tokenSession }) : res.status(409).send({ error: 'Username or password is invalidate' });
     } catch (error) {
         console.log({ message: error.message });
         res.status(304).send({ message: error.message });

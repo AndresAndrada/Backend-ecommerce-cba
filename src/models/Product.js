@@ -15,9 +15,9 @@ const Product = (sequelize) => {
         desciption: {
             type: DataTypes.TEXT,
         },
-        type: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-        },
+        // type: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING),
+        // },
         image: {
             type: DataTypes.STRING,
         },
