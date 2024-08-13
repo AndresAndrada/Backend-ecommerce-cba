@@ -15,9 +15,9 @@ const Product = (sequelize) => {
         desciption: {
             type: DataTypes.TEXT,
         },
-        type: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-        },
+        // type: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING),
+        // },
         image: {
             type: DataTypes.STRING,
         },
@@ -35,7 +35,11 @@ const Product = (sequelize) => {
             type: DataTypes.BOOLEAN,
             default: false
         },
-    })
+    },
+        {
+            timestamps: false
+        }
+    )
 };
 
 module.exports = { Product };
