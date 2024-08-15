@@ -8,7 +8,7 @@ const Product = (sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        name_produc: {
+        name_product: {
             type: DataTypes.STRING,
             allowNull: false
         },
