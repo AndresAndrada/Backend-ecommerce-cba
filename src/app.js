@@ -20,6 +20,9 @@ server.use(cookieParser());
 server.use('/', router)
 
 console.log(sequelize.models, 'MODELOS');
-const { Product } = sequelize.models;
+const { Product, Type } = sequelize.models;
+
+Product.belongsToMany(Type, { through: 'type_product' });
+Type.belongsToMany(Product, { through: 'type_product' });
 
 module.exports = server;

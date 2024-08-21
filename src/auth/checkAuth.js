@@ -1,4 +1,4 @@
-const { verifyToken } = require('../handle/verifyToken');
+const { verifyToken } = require('../middleware/verifyToken');
 
 const checkAuth = async (req, res, next) => {
     try {
