@@ -1,8 +1,8 @@
 require('dotenv').config();
 const { User } = require("../../db/db");
 const crypto = require('crypto');
-const { comparePassword } = require("../../handle/comparePassword");
-const { tokenSign } = require("../../handle/generateToken");
+const { comparePassword } = require("../../middleware/comparePassword");
+const { tokenSign } = require("../../middleware/generateToken");
 const { SALT } = process.env;
 
 function encryptPassword(password, salt) {
