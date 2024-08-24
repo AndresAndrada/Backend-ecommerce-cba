@@ -13,7 +13,6 @@ function encryptPassword(password, salt) {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        // console.log(hashedPassword, 'hashedPassword');
         const user = await User.findOne({ where: { email } });
         if (!user?.dataValues) return res.status(404).send({ error: 'Username or password is invalidate' })
         const hashedPassword = encryptPassword(password, SALT);
