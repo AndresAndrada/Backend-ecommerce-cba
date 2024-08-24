@@ -8,7 +8,6 @@ const patchPassword = async (req, res) => {
     try {
         const password = encryptPassword(dataUser.password, SALT);
         const userPassword = await User.update({ password: password }, { where: { id: idUser } });
-        console.log(userPassword, 'HASPASSWORD');
         res.send(userPassword);
     } catch (error) {
         res.status(304).send({ message: error.message });
