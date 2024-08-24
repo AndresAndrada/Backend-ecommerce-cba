@@ -17,6 +17,6 @@ userRouter.post('/', createUser);
 userRouter.post('/login', login);
 
 // PATCH
-userRouter.patch('/:id', adminUser);
+userRouter.patch('/:id', checkAuth, chackRoleAuth, adminUser);
 
 module.exports = userRouter;
