@@ -4,15 +4,19 @@ const { createUser } = require('../../controllers/user/createUser');
 const { login } = require('../../controllers/user/login');
 const { checkAuth } = require('../../auth/checkAuth');
 const { chackRoleAuth } = require('../../middleware/checkRoleAuth');
+const { adminUser } = require('../../controllers/user/adminUser');
 // const { registerProduct } = require('../../controllers/product/registerProduct');
 
 const userRouter = Router();
 
 // GET
-userRouter.get('/', checkAuth, chackRoleAuth(['']), getAllUser);
+userRouter.get('/', checkAuth, chackRoleAuth, getAllUser);
 
 // POST
 userRouter.post('/', createUser);
 userRouter.post('/login', login);
+
+// PATCH
+userRouter.patch('/:id', adminUser);
 
 module.exports = userRouter;

@@ -19,7 +19,7 @@ const login = async (req, res) => {
         const hashedPassword = encryptPassword(password, SALT);
         const checkPassword = await comparePassword(hashedPassword);
         const tokenSession = await tokenSign(user);
-        checkPassword ? res.send({ idUser: user.id, emailUser: user.email, tokenSession }) : res.status(409).send({ error: 'Username or password is invalidate' });
+        checkPassword ? res.send({ objectId: user.id, emailUser: user.email, tokenSession }) : res.status(409).send({ error: 'Username or password is invalidate' });
     } catch (error) {
         console.log({ message: error.message });
         res.status(304).send({ message: error.message });
