@@ -5,6 +5,7 @@ const { login } = require('../../controllers/user/login');
 const { checkAuth } = require('../../auth/checkAuth');
 const { chackRoleAuth } = require('../../middleware/checkRoleAuth');
 const { adminUser } = require('../../controllers/user/adminUser');
+const { patchPassword } = require('../../controllers/user/patchPassword');
 // const { registerProduct } = require('../../controllers/product/registerProduct');
 
 const userRouter = Router();
@@ -18,5 +19,6 @@ userRouter.post('/login', login);
 
 // PATCH
 userRouter.patch('/:id', checkAuth, chackRoleAuth, adminUser);
+userRouter.patch('/password/:idUser', checkAuth, chackRoleAuth, patchPassword);
 
 module.exports = userRouter;

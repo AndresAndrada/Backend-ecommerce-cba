@@ -1,19 +1,9 @@
 require('dotenv').config();
 const { User } = require("../../db/db");
-const crypto = require('crypto');
 const { newUser } = require('../../config/nodemailer');
 const { compareUser } = require("../../middleware/compareUser");
+const { encryptPassword, generateSalt } = require('../../middleware/encryptPassword');
 const { SALT } = process.env;
-
-function encryptPassword(password, salt) {
-    const hash = crypto.createHmac('sha256', salt).update(password).digest('hex');
-    return hash;
-}
-
-// Genera un salt aleatorio (debe almacenarse junto con la contraseña en la base de datos)
-function generateSalt() {
-    return crypto.randomBytes(16).toString('hex');
-}
 
 const createUser = async (req, res) => {
     //{ "username": "Martin", "email": "martin@gimal.com", "password": "Martin5%", "user_image": "", "contact": "" }
@@ -22,7 +12,6 @@ const createUser = async (req, res) => {
         if (!user.username || !user.email) return res.send({ message: 'Name or email is requiere' });
         const compare = await compareUser(user.username, user.email);
         if (compare) {
-            const salt = generateSalt();
             const hashedPassword = encryptPassword(user.password, SALT);
             const userNew = await User.create({ ...user, password: hashedPassword });
             await newUser(user.email);
