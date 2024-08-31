@@ -7,9 +7,9 @@ const patchType = async (req, res) => {
     const type = req.body;
     try {
         const typeFind = await Type.findOne({ where: { name_type: type.name_type } });
-        if (typeFind.dataValues) {
-            const userPassword = await Type.update(type, { where: { id: idType } });
-            res.send({ userPassword, message: 'Modified already exists' });
+        if (!typeFind?.dataValues) {
+            const typeUpData = await Type.update(type, { where: { id: idType } });
+            res.send({ typeUpData, message: 'Modified type' });
         } else res.status(309).send({ message: 'Type all exist' })
     } catch (error) {
         res.status(304).send({ message: error.message });
