@@ -11,7 +11,12 @@ const { URL_POSTGRESQL, PORT_POSTGRESQL } = process.env
 const sequelize = new Sequelize(URL_POSTGRESQL, {
     logging: false,
     native: false,
-    port: PORT_POSTGRESQL
+    port: PORT_POSTGRESQL,
+    dialectOptions: {
+        ssl: {
+            require: true
+        }
+    }
 });
 
 User(sequelize);
