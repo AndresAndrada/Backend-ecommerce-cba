@@ -14,9 +14,9 @@ const sequelize = new Sequelize(URL_POSTGRESQL, {
     port: PORT_POSTGRESQL,
     dialectOptions: {
         ssl: {
-            require: true,
-        },
-    },
+            require: true
+        }
+    }
 });
 
 User(sequelize);
