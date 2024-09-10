@@ -1,7 +1,7 @@
 const { User } = require("../db/db");
 const { verifyToken } = require("./verifyToken");
 
-const chackRoleAuth = async (req, res, next) => {
+const checkRoleAuth = async (req, res, next) => {
     try {
         const token = req.headers.authorization ? req.headers.authorization.split(' ').pop() : undefined;
         const tokenData = token ? await verifyToken(token) : undefined;
@@ -12,4 +12,4 @@ const chackRoleAuth = async (req, res, next) => {
     }
 }
 
-module.exports = { chackRoleAuth }
+module.exports = { checkRoleAuth }
