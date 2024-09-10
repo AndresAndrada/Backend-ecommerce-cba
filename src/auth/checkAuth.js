@@ -6,7 +6,7 @@ const checkAuth = async (req, res, next) => {
         const tokenDAta = token ? await verifyToken(token) : undefined;
         tokenDAta?.iat ? next() : res.status(409).send({ error: "Token is not define" });
     } catch (error) {
-        console.error({ error: error.message });
+        res.status(304).send({ message: error.message });
     }
 }
 
