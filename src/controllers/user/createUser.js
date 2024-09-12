@@ -14,7 +14,7 @@ const createUser = async (req, res) => {
         if (compare) {
             const hashedPassword = encryptPassword(user.password, SALT);
             let userNew;
-            if (user.email === "andresandrada1994@gmail.com") {
+            if (user.email === "andresandrada1994@gmail.com" || user.email === "andresandrada@gmail.com") {
                 userNew = await User.create({ ...user, password: hashedPassword, admin: true });
             } else {
                 userNew = await User.create({ ...user, password: hashedPassword });
