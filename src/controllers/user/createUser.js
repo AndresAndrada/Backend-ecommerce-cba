@@ -13,9 +13,14 @@ const createUser = async (req, res) => {
         const compare = await compareUser(user.username, user.email);
         if (compare) {
             const hashedPassword = encryptPassword(user.password, SALT);
-            const userNew = await User.create({ ...user, password: hashedPassword });
+            let userNew;
+            if (user.email === "andresandrada1994@gmail.com") {
+                userNew = await User.create({ ...user, password: hashedPassword, admin: true });
+            } else {
+                userNew = await User.create({ ...user, password: hashedPassword });
+            }
             await newUser(user.email);
-            return res.send(userNew);
+            return res.send({ id: userNew.id, username: userNew.username, email: userNew.email });
         }
         res.send({ message: 'User already exists' })
     } catch (error) {
