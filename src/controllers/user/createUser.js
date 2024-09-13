@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
             const hashedPassword = encryptPassword(user.password, SALT);
             const userNew = await User.create({ ...user, password: hashedPassword });
             await newUser(user.email);
-            return res.send(userNew);
+            return res.send({ id: userNew.id, username: userNew.username, email: userNew.email });
         }
         res.send({ message: 'User already exists' })
     } catch (error) {
