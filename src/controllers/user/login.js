@@ -14,7 +14,7 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ where: { email } });
-        if (!user?.dataValues) return res.status(404).send({ error: 'Username or password is invalidate' })
+        if (!user?.dataValues) return res.send({ error: 'Username or password is invalidate' })
         const hashedPassword = encryptPassword(password, SALT);
         const checkPassword = await comparePassword(hashedPassword);
         const tokenSession = await tokenSign(user);
