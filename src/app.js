@@ -22,7 +22,7 @@ server.use('/', router)
 console.log(sequelize.models, 'MODELOS');
 const { Product, Type } = sequelize.models;
 
-Product.belongsToMany(Type, { through: 'type_product' });
-Type.belongsToMany(Product, { through: 'type_product' });
+Type.hasMany(Product);
+Product.belongsTo(Type);
 
 module.exports = server;
