@@ -2,15 +2,14 @@ const { Product } = require("../../db/db");
 
 const deleteProduct = async (req, res) => {
     const { idProduct } = req.params;
-    console.log(req.params, 'PRODUCT');
-
+    const { logicalDelete } = req.body;
     try {
         try {
-            const deleteProduct = await Product.destroy({ where: { id: idProduct } });
-            if (!deleteProduct) {
-                throw new Error("Resquest failed.");
-            }
-            res.send({ message: 'Producto eliminado', deleteProduct });
+            const deleteProduct = !logicalDelete
+                ? await Product.destroy({ where: { id: idProduct } })
+                : await Product.update({ status: false }, { where: { id: idProduct } });
+            if (!deleteProduct) throw new Error("Resquest failed.");
+            res.send({ message: 'Producto eliminado' });
         } catch (error) {
             throw error;
         }
