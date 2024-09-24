@@ -13,10 +13,10 @@ const productRouter = Router();
 productRouter.get('/', getAllProducts);
 
 // POST
-productRouter.post('/', checkAuth, createProduct);
+productRouter.post('/', checkAuth, checkRoleAuth, createProduct);
 
 // PATCH
-productRouter.patch('/image/:idProduct', checkAuth, patchImageProduct);
+productRouter.patch('/image/:idProduct', checkAuth, checkRoleAuth, patchImageProduct);
 
 // DELETE
 productRouter.delete('/:idProduct', checkAuth, checkRoleAuth, deleteProduct);

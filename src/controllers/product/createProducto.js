@@ -8,14 +8,9 @@ const createProduct = async (req, res) => {
             where: { name_product: product.name_product }
         });
         const typefind = await Type.findOne({ where: { id: idType } });
-        console.log(typefind, 'TYPE FIND');
         if (productFind?.id) return res.send({ message: 'Product all exists' });
         const newProducto = await Product.create(product);
-        console.log(newProducto, 'NEWPRODUCT');
-
-        const type_product = await newProducto.setType(idType);
-        console.log(type_product, 'TYPE RELACION');
-
+        await newProducto.setType(idType);
         res.send({ newProducto, message: 'Create product succesfull' });
     } catch (error) {
         res.status(304).send({ message: error.message });

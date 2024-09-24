@@ -33,7 +33,7 @@ const Product = (sequelize) => {
         },
         status: {
             type: DataTypes.BOOLEAN,
-            default: false
+            defaultValue: false
         },
     },
         {
