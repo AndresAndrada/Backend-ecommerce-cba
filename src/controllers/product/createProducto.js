@@ -11,7 +11,7 @@ const createProduct = async (req, res) => {
     if (productFind?.id) return res.send({ message: 'Product all exists' });
     if (!typefind?.id) return res.send({ message: 'Type not exist' })
     const newProducto = await Product.create(product);
-    // await newProducto.setType(idType);
+    await newProducto.setType(idType);
     res.send({ newProducto, message: 'Create product succesfull' });
   } catch (error) {
     res.status(304).send({ message: error.message });
