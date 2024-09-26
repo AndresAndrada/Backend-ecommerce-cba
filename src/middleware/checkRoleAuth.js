@@ -8,7 +8,7 @@ const checkRoleAuth = async (req, res, next) => {
         const userData = await User.findByPk(tokenData._id);
         userData.admin ? next() : res.status(409).send({ message: "You don't have authorization" })
     } catch (error) {
-        res.status(304).send({ message: error.message });
+        res.send({ message: error.message });
     }
 }
 
