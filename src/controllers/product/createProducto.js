@@ -7,6 +7,7 @@ const createProduct = async (req, res) => {
     const productFind = await Product.findOne({
       where: { name_product: product.name_product }
     });
+
     const typefind = await Type.findByPk(idType);
     if (productFind?.id) return res.send({ message: 'Product all exists' });
     if (!typefind?.id) return res.send({ message: 'Type not exist' })
