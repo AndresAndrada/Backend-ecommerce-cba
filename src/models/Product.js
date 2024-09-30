@@ -1,4 +1,6 @@
-const { DataTypes } = require("sequelize")
+const { DataTypes } = require("sequelize");
+const { attibutesCategory } = require("../attributes/desciptionCategory");
+const { priceProduct } = require("../attributes/priceProduct");
 
 const Product = (sequelize) => {
     sequelize.define('Product', {
@@ -13,16 +15,15 @@ const Product = (sequelize) => {
             allowNull: false
         },
         desciption: {
-            type: DataTypes.TEXT,
+            type: DataTypes.JSON,
+            defaultValue: attibutesCategory()
         },
-        // type: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        // },
         image: {
             type: DataTypes.STRING,
         },
         pirce: {
-            type: DataTypes.INTEGER
+            type: DataTypes.JSON,
+            defaultValue: priceProduct(),
         },
         rating: {
             type: DataTypes.DECIMAL(3, 2),
