@@ -32,6 +32,10 @@ const Product = (sequelize) => {
         stock: {
             type: DataTypes.INTEGER,
         },
+        promotion: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
         status: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

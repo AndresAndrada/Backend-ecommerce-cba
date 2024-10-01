@@ -4,6 +4,6 @@ const { sequelize } = require('./src/db/db');
 
 const { PORT } = process.env;
 server.listen(PORT, async () => {
-    await sequelize.sync({ force: true, alter: true });
+    await sequelize.sync({ force: false, alter: true });
     console.log(`server listening on port ${PORT}`);
 });

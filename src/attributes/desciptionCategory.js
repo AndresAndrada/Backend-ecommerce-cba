@@ -1,7 +1,7 @@
 const attibutesCategory = () => {
     return {
         description: '',
-        promotion: false,
+        descriptionPromotion: '',
     };
 };
 
