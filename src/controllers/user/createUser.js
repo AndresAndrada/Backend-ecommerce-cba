@@ -7,7 +7,7 @@ const { SALT } = process.env;
 
 const createUser = async (req, res) => {
     //{ "username": "Martin", "email": "martin@gimal.com", "password": "Martin5%", "user_image": "", "contact": "" }
-    const user = req.body
+    const user = req.body;
     try {
         if (!user.username || !user.email) return res.send({ message: 'Name or email is requiere' });
         const compare = await compareUser(user.username, user.email);

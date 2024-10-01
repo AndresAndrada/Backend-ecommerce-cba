@@ -5,6 +5,8 @@ const { createProduct } = require('../../controllers/product/createProducto');
 const { patchImageProduct } = require('../../controllers/product/patchImageProducto');
 const { deleteProduct } = require('../../controllers/product/deleteProduct');
 const { checkRoleAuth } = require('../../middleware/checkRoleAuth');
+const { upDataPromotion } = require('../../controllers/product/upDataPromotion');
+const { patchProduct } = require('../../controllers/product/patchProduct');
 // const { registerProduct } = require('../../controllers/product/registerProduct');
 
 const productRouter = Router();
@@ -16,7 +18,9 @@ productRouter.get('/', getAllProducts);
 productRouter.post('/', checkAuth, checkRoleAuth, createProduct);
 
 // PATCH
+productRouter.patch('/:idProduct', checkAuth, checkRoleAuth, patchProduct);
 productRouter.patch('/image/:idProduct', checkAuth, checkRoleAuth, patchImageProduct);
+productRouter.patch('/promotion/:idProduct', upDataPromotion);
 
 // DELETE
 productRouter.delete('/:idProduct', checkAuth, checkRoleAuth, deleteProduct);
