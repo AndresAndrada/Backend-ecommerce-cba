@@ -3,6 +3,7 @@ const { Product, Type } = require("../../db/db");
 const createProduct = async (req, res) => {
   // const { name_product } = req.query;
   const { product, idType } = req.body;
+  console.log('PRODCUT');
   try {
     const productFind = await Product.findOne({
       where: { name_product: product.name_product }

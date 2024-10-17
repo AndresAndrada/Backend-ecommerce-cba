@@ -14,7 +14,7 @@ const Product = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        desciption: {
+        description: {
             type: DataTypes.JSON,
             defaultValue: attibutesCategory()
         },
