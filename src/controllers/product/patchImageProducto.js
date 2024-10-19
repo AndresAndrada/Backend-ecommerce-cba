@@ -3,7 +3,6 @@ const { cloudinaryPost } = require("../../utils/cloudinary");
 
 const patchImageProduct = async (req, res) => {
     const { idProduct } = req.params;
-    console.log(idProduct, 'PRODUCT');
     try {
         const productFind = await Product.findByPk(idProduct);
         if (productFind.dataValues && req.files?.image) {
