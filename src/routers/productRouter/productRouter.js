@@ -7,12 +7,14 @@ const { deleteProduct } = require('../../controllers/product/deleteProduct');
 const { checkRoleAuth } = require('../../middleware/checkRoleAuth');
 const { upDataPromotion } = require('../../controllers/product/upDataPromotion');
 const { patchProduct } = require('../../controllers/product/patchProduct');
+const { getProductsById } = require('../../controllers/product/getProductsById');
 // const { registerProduct } = require('../../controllers/product/registerProduct');
 
 const productRouter = Router();
 
 // GET
 productRouter.get('/', getAllProducts);
+productRouter.get('/:idProduct', getProductsById);
 
 // POST
 productRouter.post('/', checkAuth, checkRoleAuth, createProduct);

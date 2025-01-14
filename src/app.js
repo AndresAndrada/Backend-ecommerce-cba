@@ -17,7 +17,7 @@ server.use(fileUpload({
 }));
 server.use(cookieParser());
 
-server.use('/', router)
+server.use('/api/v1/', router)
 
 console.log(sequelize.models, 'MODELOS');
 const { Product, Type } = sequelize.models;

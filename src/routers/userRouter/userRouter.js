@@ -7,12 +7,14 @@ const { checkRoleAuth } = require('../../middleware/checkRoleAuth');
 const { adminUser } = require('../../controllers/user/adminUser');
 const { patchPassword } = require('../../controllers/user/patchPassword');
 const { deleteUser } = require('../../controllers/user/deleteUser');
+const { getUserById } = require('../../controllers/user/getUserById');
 // const { registerProduct } = require('../../controllers/product/registerProduct');
 
 const userRouter = Router();
 
 // GET
 userRouter.get('/', checkAuth, checkRoleAuth, getAllUser);
+userRouter.get('/:idUser', checkAuth, getUserById);
 
 // POST
 userRouter.post('/', createUser);
