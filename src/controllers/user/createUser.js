@@ -2,7 +2,7 @@ require('dotenv').config();
 const { User } = require("../../db/db");
 const { newUser } = require('../../config/nodemailer');
 const { compareUser } = require("../../middleware/compareUser");
-const { encryptPassword, generateSalt } = require('../../middleware/encryptPassword');
+const { encryptPassword } = require('../../middleware/encryptPassword');
 const { SALT } = process.env;
 
 const createUser = async (req, res) => {

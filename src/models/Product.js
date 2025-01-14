@@ -21,7 +21,7 @@ const Product = (sequelize) => {
         image: {
             type: DataTypes.STRING,
         },
-        pirce: {
+        price: {
             type: DataTypes.JSON,
             defaultValue: priceProduct(),
         },
@@ -31,6 +31,10 @@ const Product = (sequelize) => {
         },
         stock: {
             type: DataTypes.INTEGER,
+        },
+        mayorista: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         promotion: {
             type: DataTypes.BOOLEAN,
